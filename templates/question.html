@@ -1,0 +1,207 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+{% block title %}  TEST {% endblock %}
+
+{% block stylesheet %}
+<link rel = "stylesheet" href = "{% static 'question.css' %}">
+
+
+<style>
+    
+    *,
+    *::after,
+    *::before {
+        box-sizing: border-box;
+    }
+    
+    .modal {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid black;
+        border-radius: 10px;
+        z-index: 10;
+        background-color: white;
+        width: 600px;
+        max-width: 80%;
+        display: none;
+    }
+    #question
+    {
+        font-size: 25px;
+    }
+    .modal.active {
+        display: block;
+    }
+    
+    .modal-head {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid black;
+    }
+    
+    .modal-head .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+    
+    .modal-head .close-button {
+        cursor: pointer;
+        border: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+        background-color: none;
+        outline: none;
+    }
+    
+    .modal-body {
+        padding: 10px 15px;
+    }
+    
+    #overlay {
+        position: fixed;
+        opacity: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .5);
+        pointer-events: none;
+    }
+    
+    #overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+    
+    #warning-button {
+        cursor: pointer;
+    }
+    
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    // function removeIFrame() {
+        //   var frame = document.getElementById("iframe");
+        // frame.parentNode.removeChild(frame);}
+        
+        
+        //Right clicks
+        window.addEventListener("contextmenu", e => {
+            e.preventDefault();
+        });
+
+
+
+        window.addEventListener('fullscreenchange', event => {
+            if (!document.fullscreen) {
+                window.top.location.href="http://localhost:8000/score"
+                alert('Please enable fullscreen mode to continue exam')
+                var question = document.getElementById('question');
+                question.classList.remove('active');
+            }
+        }
+        );
+		window.addEventListener("visibilitychange", e=> {
+		if (document.hidden)
+		  alert("Please don't go out of the window");
+		})
+    </script>
+    
+    {% endblock %}
+    
+    
+    
+    {% block body %}
+    
+    
+    
+    
+    {% if C %}
+    
+    
+    
+    
+    <br><br><br>
+    
+    
+    <div id="question">
+            <div style="padding:10px; border-radius: 0;">
+                {{ C.qno }}. {{ C.question }}<br>
+            </div><!--QUESTION DIV-->
+        <br>
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <div  style="margin-left: 50px; color:black" >
+                
+                <input type="radio" id="op1" name="option" value="A" required>
+                <label for="op1">{{ C.A }}</label>
+                <br><br>
+                
+                <input type="radio" id="op2" name="option" value="B">
+                <label for="op2">{{ C.B }}</label>
+                <br><br>
+                
+                <input type="radio" id="op3" name="option" value="C">
+                <label for="op3">{{ C.C }}</label>
+                <br><br>
+                
+                <input type="radio" id="op4" name="option" value="D">
+                <label for="op4">{{ C.D }}</label>
+                <br><br><br>
+                
+                <input type = "hidden" name = "test_started">
+                
+                <button type="submit" class="btn btn-dark rounded-pill">Submit and Next</button>
+                
+                
+            </div><!--OPTIONS DIV-->
+            
+        </form>
+        
+        
+        
+        
+        
+        <div>Difficulty : {{ C.difficulty }}</div>
+        <br><br><br><br>
+        
+        
+        
+        <!-- <center>
+            
+            <div class = "footer bg-dark text-white">
+                <p>© 2022 - 2023 Developer | TCS | All Rights Reserved.</p>
+                <p><a href="https://www.tcs.com/">Powered By TCS</a></p>
+            </div>
+            
+        </center> -->
+        
+        
+        <script type="text/javascript">
+            /* function closeWin()   
+            {
+                //alert("HELLO BABY");
+                var someIframe = window.parent.document.getElementsByTagName('iframe');
+                someIframe.parentNode.removeChild(someIframe);
+            }
+            closeWin()*/
+            
+            
+            
+            
+            
+        </script>
+        
+        {% endif %}
+        {% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+{% block title %} Admin Portal  {% endblock %}
+
+{% block stylesheet %}
+
+    <link rel = "stylesheet" href = "{% static 'common.html' %}">
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>Students</h1>
+
+    <br>
+
+    <table>
+
+        <tr>
+
+            <th> Name </th>
+            <th> Mobile </th>
+            <th> Email </th>
+
+        </tr>
+
+        {% for S in Students %}
+
+            <tr>
+
+                <td> {{ S.name }}   </td>
+                <td> {{ S.mobile }} </td>
+                <td> {{ S.email }}  </td>
+
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+{% block title %} SCORE {% endblock %}
+
+{% block stylesheet %}
+
+<script>
+  var myTimer;
+  function clock() {
+    myTimer = setInterval(myClock, 1000);
+
+    const startingMin = 10;
+    let time = startingMin * 60;
+    function myClock() {
+      const minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      document.getElementById("demo").innerHTML = `Time left:${minutes}:${seconds}`;
+      time--;
+      if (time < 0) {
+        window.location.href = "http://localhost:8000/final";
+        clearInterval(myTimer);
+      }
+    }
+
+  }
+
+  function fullscreen() {
+    var x = document.getElementById('question');
+    x.classList.add('active');
+    x.requestFullscreen();
+  }
+  window.addEventListener('fullscreenchange', event => {
+    if (!document.fullscreen) {
+      var question = document.getElementById('question');
+      question.classList.remove('active');
+    }
+  }
+  )
+  window.addEventListener("visibilitychange", e=> {
+    if (document.hidden)
+      alert("Please don't go out of the window");
+  })
+
+  document.addEventListener('keydown', event => {
+    event.preventDefault();
+  })
+  window.addEventListener('fullscreenchange', event => {
+    if (!document.fullscreen) {
+      window.top.location.href = "http://localhost:8000/score"
+      //alert('Please enable fullscreen mode to continue exam')
+      //var question = document.getElementById('question');
+      //question.classList.remove('active');
+    }
+  }
+  )
+
+
+
+
+
+
+
+</script>
+
+
+
+
+<style>
+  #question {
+    display: none;
+    color: black;
+  }
+
+  #question.active {
+    color: black;
+    display: block;
+    background-color: white;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  li {
+    float: left;
+    border-right: 1px solid #bbb;
+  }
+
+  li:last-child {
+    border-right: none;
+  }
+
+  li {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 2px 5px;
+    text-decoration: none;
+  }
+
+  label {
+    text-decoration-color: #fff;
+  }
+
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .ins h1 {
+    text-align: center;
+  }
+
+  .lines {
+    border-radius: 5px;
+    padding: 0 20px;
+  }
+  .ins
+  {
+    font-size: 20px;
+    background-color: #e1f3e7;
+  }
+  .button {
+    background-color: #35879e;
+    padding: 5px 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+  }
+  footer 
+  {
+    text-align: center;
+    padding: 3px;
+    background-color: #98c7b6;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  footer p,
+  footer a {
+      font-size: 28px;
+      margin-bottom: 0;
+      margin-top: 0;
+  }
+</style>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+{% block body %}
+<div id="question" style="font-size:20px;color: black;">
+  <ul style="background-color:#c6b7c5; padding-top: 5px;">
+    <li>
+      <h1>TCS</h1>
+    </li>
+    <li>
+      <p id="demo"></p>
+    </li>
+    <li style="float:right"><a href="http://localhost:8000" style="padding: 0">Logout <i class='fas fa-power-off'></i></a></li>
+    <li style="float:right"><i class='fa-solid fa-user'></i> {{request.user.get_full_name}}</li>
+  </ul>
+
+  <iframe src="http://localhost:8000/test" name="iframe_a" height="95%" width="100%" title="Iframe Example"></iframe>
+
+
+</div>
+<!--instructions-->
+
+
+
+
+<div class="ins">
+  <h1 >Please read the following instructions carefully</h1>
+  <br>
+  <div class="lines">
+    <form>
+      <p>1. The exam has fixed amount of time and you have to complete the exam within that time period</p>
+      <p>2. It is a adaptive test which gets harder and easier based on the answer given to pervious question</p>
+      <p>3. After clicking the Take Test button the screen will enter the fullscreen mode</p>
+      <p>4. If you try to exit FULLSCREEN, exam will end</p>
+      <p>5. Any type malpractice are strickly prohibited</p>
+      <h5>Exam pattern</h5>
+      <p>Exam topic:<b> {{ subject }} </b></p>
+      <p>Number of question: 10</p>
+      <p>Time period: 5min</p>
+    </form>
+  </div>
+</div>
+<div>
+</div>
+
+
+<a href="http://localhost:8000/test" target="iframe_a"><button onclick="fullscreen(); clock();disable();">Take
+    test</button></a>
+
+<br><br>
+
+<footer>
+  <p>© 2022 - 2023 DeveloperTcs|All Rights Reserved</p>
+  <p><a href="https://www.tcs.com/" target="_blank">tcs.com</a></p>
+</footer>
+
+
+
+{% endblock %}

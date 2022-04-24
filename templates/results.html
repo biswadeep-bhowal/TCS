@@ -1,0 +1,45 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+{% block title %} Admin Portal  {% endblock %}
+
+{% block stylesheet %}
+
+    <link rel = "stylesheet" href = "{% static 'common.html' %}">
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>Results</h1>
+
+    <br>
+
+    <table>
+
+        <tr>
+
+            <th> Student Name   </th>
+            <th> Subject        </th>
+            <th> Score          </th>
+            <th> Date           </th>
+
+        </tr>
+
+        {% for R in Results %}
+
+            <tr>
+
+                <td> {{ R.student }}    </td>
+                <td> {{ R.subject }}    </td>
+                <td> {{ R.score }}      </td>
+                <td> {{ R.date }}       </td>
+
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

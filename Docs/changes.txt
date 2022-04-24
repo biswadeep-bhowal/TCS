@@ -1,0 +1,164 @@
+Registration page validations not woking
+Password restrictions: 1 caps, 1 small, 1 numerical, 1 special, 8 min characters-->ERROR
+Install MYSQL tool to install database  Connectivity tools
+Export all data using SQL scripts... test with other colleagues
+Add one dropdown after password in register page...a radio button of YES or No
+
+
+
+Week-3
+real time validation(later)
+base-64 encoding decoding
+#Password should be encrypted and decrypted using base-64 encoding
+password authentication not working-->DONE
+
+GITHUB
+commit code in github in master branch...create subbranches... then once ready..merge the code in master branch
+start time of the test and attempt number--> database stored
+
+
+
+
+
+Week-4
+
+ENTITY OBJECT MAPPING
+Object having all columns of table as attributes except correctness and difficulty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Week-5
+Exam in new tab and no tab changes or minimization
+Add a button in test page
+
+MODAL POPUP-->Focus only on the popup
+No individual question time limit--> only as a whole
+Marked for Review similar to NQT
+All questions are compulsory
+
+Configuration file
+settings.py--> total number of questions
+Each topic should have separate database tables
+If marked for review==> No change in difficulty
+If submitted==> there change in difficulty
+
+Sort contents in descending order of difficulty 
+
+
+Q1 0
+Q2 2
+Q3 1
+Q4 2
+Q5 0
+Q6 1
+
+CORRECT 
+Q2 2
+Q4 2
+Q3 1
+Q6 1
+Q5 0
+
+CORRECT
+
+Q4 2
+Q3 1
+Q6 1
+Q5 0
+
+INCORRECT
+
+Q3 1
+Q6 1
+Q5 0
+
+INCORRECT
+Q5 0
+Q6 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Change the font professionally using pearson exam sites
+Questions should be in white area
+
+
+
+NAVBAR in question.html
+Logo on left
+Name of exam middle
+Right side timer do using python
+Extreme Right--> Profile name + Profile Icon--> Dropdowns --> Profile page and signout 
+Reload only the white part
+
+
+
+Divide html into 3 parts
+header body and footer
+header-->NAVBAR--> no reload
+BODY--> develop using iframe and reload everytime
+footer--> NO RELOAD
+Alert on pressing escape
+done twice exam ends
+
+
+
+Restrictions--NISHANT
+iframe--ROHIT 
+timer--SASWATA
+
+
+
+
+
+
+
+
+Performance page
+REAL ESTATE of UI UX
+Select a subject to above profile details
+Attempts on the same page right side
+
+Pagination-->HTML or JAVASCRIPT
+Performance Table--> Attempt.no,exam topic,exam score
+
+ADMIN PORTAL
+Tables in Admin Portal
+
+STUDENT--> Naam, Mobile, email
+ALL TEST--> Student naam, subject, score, date
+
+
+
+

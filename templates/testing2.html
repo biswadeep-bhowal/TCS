@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://kit.fontawesome.com/0e3ce07a9f.js" crossorigin="anonymous"></script>
+  <style >
+    #question {
+      display: none;
+      color: black;
+    }
+    
+    #question.active {
+      color: black;
+      display: block;
+      background-color: white;
+    }
+    
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    li {
+      float: left;
+      border-right:1px solid #bbb;
+    }
+    
+    li:last-child {
+      border-right: none;
+    }
+    
+    li{
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 2px 5px;
+      text-decoration: none;
+    }
+    label{
+      text-decoration-color: #fff;
+    }
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    .ins h2{
+      text-align: center;
+    }
+    .lines{
+      border-radius: 5px;
+      
+      padding: 20px;
+      background-color:  #c2bfbf;;
+    }
+    .button {
+      background-color: #35879e;
+      padding: 5px 20px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+    }
+    
+  </style>
+  <body>
+    <div id="question">
+      <ul>  
+        <li><p>Online Exam Portal</p></li>
+        <li><p id="demo" style="color: white"></p></li>
+        <li style="float:right"><a href="#">Logout <i class='fas fa-power-off'></i></a></li>
+        <li style="float:right"><a href="#"><i class='fa-solid fa-user'></i> User</a></li>
+      </ul>
+      
+      <br>
+      <iframe src="question.html" name="iframe_a" height="75%" width="100%" title="Iframe Example"></iframe>
+      <center>
+        
+        <div class = "footer bg-dark text-white">
+          <p>© 2022 - 2023 Developer | TCS | All Rights Reserved.</p>
+          <p><a href="https://www.tcs.com/">Powered By TCS</a></p>
+        </div>
+        
+      </center>
+      
+    </div>
+    <!--instructions-->
+    <div class="ins"><h2>Please read the following instructions carefully</h2>
+      <br><br>
+      <div class="lines">
+        <form>
+          <p>1. The exam have fixed amount of time and you have to complete the exam within that time period</p>
+          
+          <p>2. It is a adaptive test which gets harder and easier based on the answer given to pervious question</p>
+          <p>3. After clicking the submit button the screen will be locked</p>
+          <p>4. Any type malpractice are strickly prohibited</p>
+          <h5>Exam pattern</h5>
+          <p>Exam topic: <b>JAVA</b></p>
+          <p>Number of question: 10</p>
+          <p>Time period: 20min</p>
+        </form>
+      </div>
+    </div>
+    <div>
+    </div>
+    
+    
+    <a href="http://localhost:8000/test" target="iframe_a"><button onclick="fullscreen(); clock()">Take test</button></a>
+    
+    
+    
+    <script>
+      var myTimer;
+      
+      function clock() {
+        myTimer = setInterval(myClock, 1000);
+        //<!--var c = 180;--!>
+          const startingMin = 5;
+          let time = startingMin*60;
+          
+          function myClock() {
+            
+            const minutes = Math.floor(time/60);
+            let seconds= time % 60;
+            seconds= seconds<10 ? '0' +seconds:seconds;
+            document.getElementById("demo").innerHTML = `Time left:${minutes}:${seconds}`;
+            time--;
+          }
+          if (time == 0) {
+            clearInterval(myTimer);
+            alert("Reached zero");
+          }
+        }
+        
+        function fullscreen() {
+          var x = document.getElementById('question');
+          x.classList.add('active');
+          x.requestFullscreen();
+        }
+        window.addEventListener('fullscreenchange', event => {
+          if (!document.fullscreen) {
+            var question = document.getElementById('question');
+            question.classList.remove('active');
+          }
+        }
+        )
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden)
+          alert("Please don't go out of the window");
+        })
+      </script>
+    </body>
+  </head>
+  

@@ -1,0 +1,36 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+{% block title %} Scores {% endblock %}
+
+{% block body %}
+
+    <h1> Scores </h1>
+
+    <br>
+
+    <table>
+
+        <tr>
+
+            <th> Subject    </th>
+            <th> Score      </th>
+            <th> Date       </th>
+
+        </tr>
+
+        {% for S in Scores %}
+
+            <tr>
+
+                <td> {{ S.subject }}    </td>
+                <td> {{ S.score }}      </td>
+                <td> {{ S.date }}       </td>
+
+
+            </tr>
+
+        {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends 'common.html' %}
+
+{% load static %}
+
+
+{% block stylesheet %}
+
+    <style>
+    *{
+        margin: 0;
+    }
+    header {
+        background-color: rgb(92, 199, 199);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+    }
+    #profile-section
+    {
+        display: grid;
+        grid-template-columns: 1.5fr 3fr;
+        grid-template-rows: repeat(3,60px);
+        width: 45%;
+        font-size: xx-large;
+        margin: 20px 10px;
+    }
+    #profile-section > div
+    {
+        padding: 10px;
+    }
+    #subject-selection-box 
+    {
+        display: inline-block;
+        margin: 18px;
+        font-size: xx-large;
+    }
+    #subject-selection-box select 
+    {
+        font-size: large;
+        padding: 10px;
+    }
+    #takeTestBtn
+    {
+        font-size: 15px;
+        /* font-family: 'Courier New', Courier, monospace; */
+        font-weight: 700;
+        margin-top: 15px;
+        padding: 5px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    table, th, td 
+    {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    table
+    {
+        position: absolute;
+        right: 0;
+        top: 80px;
+        font-size: x-large;
+        margin-right: 35px;
+        width: 50%;
+    }
+    th:nth-child(1)
+    {
+        width: 13%;
+    }
+    th:nth-child(2)
+    {
+        width: 35%;
+    }
+    th:nth-child(3){
+        width: 29%;
+    }
+    footer 
+    {
+        text-align: center;
+        padding: 3px;
+        background-color: #98c7b6;
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    footer p,
+    footer a {
+        font-size: 28px;
+		margin-bottom: 0;
+    }
+    </style>
+{% endblock %} 
+{% block body %} 
+
+<header>
+        <h1>TCS</h1>
+
+        <h2>ONLINE EXAM</h2>
+        <div>  
+             {{request.user.get_full_name}}
+			 <a href="http://localhost:8000">Logout</a>            
+        </div>
+</header>
+
+{% if request.user.is_authenticated %}
+
+<div id="profile-section">
+    <div>Name</div>
+    <div>{{ request.user.get_full_name }}</div>
+    <div>Email</div>
+    <div>{{ request.user.email }}</div>
+    <div>Mobile no.</div>
+    <div>{{student.mobile}}</div>
+</div>
+
+<div id="subject-selection-box">
+
+
+    <form method="POST" action="/instructions/">
+        {% csrf_token %}
+        <label for="subject-selection">Select a subject</label>
+
+            <select name="subject">
+
+                <option value="PYTHON">Python</option>
+                <option value="JAVA">Java</option>
+                <option value="CN">CN</option>
+                <option value="DBMS">DBMS</option>
+                <option value="OS">OS</option>
+
+            </select>
+            </h2>
+            <br>
+            <button type="submit" id="takeTestBtn">Take Test</button>
+
+    </form>
+
+</div>
+
+{% else %}
+
+<center>
+    <div class="alert alert-danger">Login To See Profile Details!</div>
+</center>
+
+{% endif %}
+<table>
+
+    <thead>
+        
+        <tr>
+
+            <th> SL No. </th>
+            <th> Subject</th>
+            <th> Date</th>
+            <th> Score</th>
+
+        </tr>
+
+    </thead>
+    
+    {% for S in Scores %}
+
+        <tbody>
+            
+            <td> {{ S.id }}         </td>
+            <td> {{ S.subject }}    </td>
+            <td> {{ S.date }}       </td>
+            <td> {{ S.score }}      </td>
+
+        </tbody>
+
+    {% endfor %}
+
+</table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer>
+    <p>© 2022 - 2023 DeveloperTcs|All Rights Reserved</p>
+    <p><a href="https://www.tcs.com/" target="_blank">tcs.com</a></p>
+</footer>
+
+{% endblock %}
